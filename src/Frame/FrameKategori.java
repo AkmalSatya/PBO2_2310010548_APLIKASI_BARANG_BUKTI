@@ -83,6 +83,7 @@ private void clearFields() {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelKategori = new javax.swing.JTable();
         btnUbah = new javax.swing.JButton();
+        btnCetak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,6 +138,13 @@ private void clearFields() {
             }
         });
 
+        btnCetak.setText("Cetak");
+        btnCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCetakActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,7 +161,9 @@ private void clearFields() {
                                 .addGap(34, 34, 34)
                                 .addComponent(btnHapus)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnClear))
+                                .addComponent(btnClear)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCetak))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -167,7 +177,7 @@ private void clearFields() {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
                         .addComponent(jLabel1)))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +199,8 @@ private void clearFields() {
                     .addComponent(btnSimpan)
                     .addComponent(btnHapus)
                     .addComponent(btnClear)
-                    .addComponent(btnUbah))
+                    .addComponent(btnUbah)
+                    .addComponent(btnCetak))
                 .addGap(31, 31, 31))
         );
 
@@ -270,6 +281,10 @@ private void clearFields() {
     }
     }//GEN-LAST:event_btnUbahActionPerformed
 
+    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
+        objekKu.tampilLaporan("laporanKategori");
+    }//GEN-LAST:event_btnCetakActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,6 +321,7 @@ private void clearFields() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCetak;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;

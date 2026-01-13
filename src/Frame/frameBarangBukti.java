@@ -37,44 +37,72 @@ public class frameBarangBukti extends javax.swing.JFrame {
             }
         });
         
-        isiComboBox();
-        tampilkanDataBarangBukti("");
+     isiComboBox();
+     tampilkanDataBarangBukti("");
     }
 private void tampilkanDataBarangBukti(String keyword) {
         DefaultTableModel model = new DefaultTableModel();
         // Pastikan urutan kolom sesuai dengan yang diambil di query!
-        model.addColumn("ID BB"); 
-        model.addColumn("Nama Barang");
-        model.addColumn("Tgl Masuk");
-        model.addColumn("Jumlah");
-        model.addColumn("Status"); 
-        model.addColumn("Kondisi");
+       model.addColumn("ID Barang Bukti");
+model.addColumn("ID BB");
+model.addColumn("Nama Barang");
+model.addColumn("Tgl Masuk");
+model.addColumn("Jumlah");
+model.addColumn("Status");
+model.addColumn("Kondisi");
         
         try {
+
             String query = "SELECT id_barang_bukti, nama_barang, tanggal_masuk, jumlah_barang, status_barang, kondisi_barang " +
+
                            "FROM BARANG_BUKTI " +
+
                            "WHERE nama_barang LIKE '%" + keyword + "%' OR " +
+
                            "id_barang_bukti LIKE '%" + keyword + "%' " +
+
                            "ORDER BY id_barang_bukti DESC";
+
             
+
             ResultSet rs = objekKu.getData(query);
+
             
+
             while (rs.next()) {
+
                 model.addRow(new Object[]{
+
                     rs.getString("id_barang_bukti"),
+
                     rs.getString("nama_barang"),
+
                     rs.getString("tanggal_masuk"),
+
                     rs.getInt("jumlah_barang"),
+
                     rs.getString("status_barang"),
+
                     rs.getString("kondisi_barang")
+
                 });
+
             }
+
             // BARIS KRITIS: Mengatur model ke JTable
+
             tabelBarangBukti.setModel(model); 
+
         } catch (SQLException e) {
+
             JOptionPane.showMessageDialog(this, "Error saat memuat data Barang Bukti: " + e.getMessage());
+
         }
+
+
 }
+
+
     private void txtCariKeyReleased(java.awt.event.KeyEvent evt) {                                    
         String keyword = txtCari.getText();
         tampilkanDataBarangBukti(keyword);
@@ -114,19 +142,24 @@ private void tampilkanDataBarangBukti(String keyword) {
         int baris = tabelBarangBukti.getSelectedRow();
         if (baris != -1) {
             // Ambil data dari tabel berdasarkan kolom (INDEX KOLOM SANGAT KRITIS)
-            String id = tabelBarangBukti.getValueAt(baris, 0).toString();      // ID BB
-            String nama = tabelBarangBukti.getValueAt(baris, 1).toString();    // Nama Barang
-            String tglMasuk = tabelBarangBukti.getValueAt(baris, 2).toString(); // Tgl Masuk
-            String jumlah = tabelBarangBukti.getValueAt(baris, 3).toString();    // Jumlah
-            String status = tabelBarangBukti.getValueAt(baris, 4).toString();    // Status
-            String kondisi = tabelBarangBukti.getValueAt(baris, 5).toString();   // Kondisi
+            String id = tabelBarangBukti.getValueAt(baris, 0).toString();      
+            String nama = tabelBarangBukti.getValueAt(baris, 1).toString();    
+            String tglMasuk = tabelBarangBukti.getValueAt(baris, 2).toString();
+            String jumlah = tabelBarangBukti.getValueAt(baris, 3).toString();    
+            String satuan = tabelBarangBukti.getValueAt(baris, 4).toString(); 
+            String status = tabelBarangBukti.getValueAt(baris, 5).toString(); 
+            String kondisi = tabelBarangBukti.getValueAt(baris, 6).toString();
+            String ket = tabelBarangBukti.getValueAt(baris, 7).toString();
             
             // --- Isi Field Input ---
             txtIDBarangBukti.setText(id);
             txtNamaBarang.setText(nama);
             txtTglMasuk.setText(tglMasuk);
             txtJumlah.setText(jumlah);
-            // txtSatuan & txtKeterangan TIDAK ADA di kolom tabel (harus diambil via query tambahan jika perlu)
+            txtSatuan.setText(satuan);
+            txtKeterangan.setText(ket);
+
+            
             
             status_barang.setSelectedItem(status);
             cmbKondisi.setSelectedItem(kondisi);
@@ -189,6 +222,7 @@ private void tampilkanDataBarangBukti(String keyword) {
         txtCari = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelBarangBukti = new javax.swing.JTable();
+        btnCetak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -272,6 +306,13 @@ private void tampilkanDataBarangBukti(String keyword) {
         ));
         jScrollPane2.setViewportView(tabelBarangBukti);
 
+        btnCetak.setText("Cetak");
+        btnCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCetakActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -287,13 +328,15 @@ private void tampilkanDataBarangBukti(String keyword) {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCari))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(jLabel8)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(54, 54, 54))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -326,13 +369,13 @@ private void tampilkanDataBarangBukti(String keyword) {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel1))))
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnUbah)
                             .addComponent(btnTambah)
-                            .addComponent(btnHapus))
+                            .addComponent(btnHapus)
+                            .addComponent(btnCetak))
                         .addGap(59, 59, 59))))
         );
         layout.setVerticalGroup(
@@ -368,17 +411,14 @@ private void tampilkanDataBarangBukti(String keyword) {
                         .addGap(22, 22, 22)
                         .addComponent(btnHapus)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(txtSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addComponent(jLabel9)
-                        .addGap(108, 108, 108)
-                        .addComponent(jLabel10))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnCetak)
+                        .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbKondisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
@@ -392,10 +432,16 @@ private void tampilkanDataBarangBukti(String keyword) {
                                 .addComponent(jLabel8))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
-                                .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel10))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(14, 14, 14)
                         .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
@@ -489,6 +535,7 @@ private void tampilkanDataBarangBukti(String keyword) {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error saat mengubah data: " + e.getMessage());
         }
+        
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void cmbKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriActionPerformed
@@ -503,6 +550,10 @@ private void tampilkanDataBarangBukti(String keyword) {
         String keyword = txtCari.getText();
         tampilkanDataBarangBukti(keyword);
     }//GEN-LAST:event_txtCariActionPerformed
+
+    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
+        objekKu.tampilLaporan("laporanBarangBukti");
+    }//GEN-LAST:event_btnCetakActionPerformed
 
     /*
      * @param args the command line arguments
@@ -540,6 +591,7 @@ private void tampilkanDataBarangBukti(String keyword) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCetak;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;

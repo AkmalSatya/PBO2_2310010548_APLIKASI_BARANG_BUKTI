@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dde583da-9a66-49f6-a832-7b1fa1c84880">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from log_aktivitas]]>
+	</queryString>
+	<field name="id_log" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_user" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="waktu_aksi" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis_aksi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="deskripsi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="139" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="2" width="100" height="20" uuid="1d30dcaf-ad45-48a9-a7ae-52f207293eaf"/>
+				<text><![CDATA[id_log]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="2" width="100" height="20" uuid="4b051998-71f6-42ee-aac3-99cad4c3e72e"/>
+				<text><![CDATA[id_user]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="2" width="100" height="20" uuid="cc53d766-8142-4cd2-9395-11772dd50a22"/>
+				<text><![CDATA[waktu_aksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="2" width="100" height="20" uuid="2173f651-7d99-4d0d-81e7-c39b2576c0b5"/>
+				<text><![CDATA[jenis_aksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="2" width="100" height="20" uuid="3d4b3738-d73f-4b8e-8f63-28b65d0b70d9"/>
+				<text><![CDATA[deskripsi]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="13" y="21" width="100" height="20" uuid="42617cfa-17ba-4418-84b4-3b3926246702"/>
+				<textFieldExpression><![CDATA[$F{id_log}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="27" width="100" height="20" uuid="156f5a3e-b6d3-4d00-9832-1021d9f76f12"/>
+				<textFieldExpression><![CDATA[$F{id_user}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="25" width="100" height="20" uuid="411a24a8-59ff-4756-8903-05df6b832f7b"/>
+				<textFieldExpression><![CDATA[$F{waktu_aksi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="341" y="25" width="100" height="20" uuid="2722fcbd-c21f-42d2-9727-3e3b88096306"/>
+				<textFieldExpression><![CDATA[$F{jenis_aksi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="453" y="33" width="100" height="20" uuid="30529fac-80ba-44ab-ab9a-b65cf6aa232c"/>
+				<textFieldExpression><![CDATA[$F{deskripsi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

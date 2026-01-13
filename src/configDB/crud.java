@@ -12,6 +12,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+import java.io.File;
+
 /**
  *
  * @author ASUS
@@ -317,5 +322,19 @@ public boolean hapusKategori(int idKategori) {
         return false;
     }
 }
-
+public void tampilLaporan(String laporanFile) {
+    try {
+        // Mencari lokasi file .jasper atau .jrxml di dalam package laporan
+        String path = "src/laporan/" + laporanFile + ".jasper";
+        File file = new File(path);
+        
+        // Mengisi laporan dengan koneksi database yang sudah ada di class crud
+        JasperPrint print = JasperFillManager.fillReport(path, null, koneksi);
+        
+        // Menampilkan laporan
+        JasperViewer.viewReport(print, false);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Gagal menampilkan laporan: " + e.getMessage());
+    }
+}
 }

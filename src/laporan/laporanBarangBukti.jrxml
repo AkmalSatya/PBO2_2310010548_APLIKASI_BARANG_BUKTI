@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d3a0a401-f5fc-4cbf-8d31-ea64e1c6cfcb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from barang_bukti]]>
+	</queryString>
+	<field name="id_barang_bukti" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_barang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_masuk" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jumlah_barang" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="satuan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_barang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kondisi_barang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="keterangan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_user_input" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_kategori" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="182" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="2" width="100" height="20" uuid="209a3acc-42c5-4858-8ccb-d9ca598dbc45"/>
+				<text><![CDATA[id_barang_bukti]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="2" width="100" height="20" uuid="0b64c259-cc8c-4ba3-a088-ac99c76e0b8c"/>
+				<text><![CDATA[nama_barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="2" width="100" height="20" uuid="feb93b03-18ff-4d0f-b488-80a946603da2"/>
+				<text><![CDATA[tanggal_masuk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="2" width="100" height="20" uuid="1d75aac6-f212-4f45-bf5c-e1650d6ed107"/>
+				<text><![CDATA[jumlah_barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="2" width="100" height="20" uuid="27c619cd-c59f-4ffc-b07d-22c4cf4ce4ac"/>
+				<text><![CDATA[satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="47" width="100" height="20" uuid="3ed4adf2-31aa-4b15-8bbd-d25a38814f96"/>
+				<text><![CDATA[status_barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="47" width="100" height="20" uuid="57fa800d-96e5-4c93-8e98-830dc9b38eb3"/>
+				<text><![CDATA[kondisi_barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="47" width="100" height="20" uuid="52319f9a-d2ec-47e6-8b36-b043351f51b7"/>
+				<text><![CDATA[keterangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="47" width="100" height="20" uuid="c17a49e4-4080-4aaa-b5f6-0f6d2a697787"/>
+				<text><![CDATA[id_user_input]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="47" width="100" height="20" uuid="76b61eaf-bc12-4724-b587-60957cec2486"/>
+				<text><![CDATA[id_kategori]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="13" y="7" width="100" height="20" uuid="9f1bd947-ab26-419f-bf28-1aa11c0145b6"/>
+				<textFieldExpression><![CDATA[$F{id_barang_bukti}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="7" width="100" height="20" uuid="e1ea80d0-1dba-40d1-8912-76a61797d3bb"/>
+				<textFieldExpression><![CDATA[$F{nama_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="9" width="100" height="20" uuid="58e26100-6bab-4b1b-96a3-44dff27d78f6"/>
+				<textFieldExpression><![CDATA[$F{tanggal_masuk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="14" width="100" height="20" uuid="c26fdfb3-6826-42af-93ce-be073613e218"/>
+				<textFieldExpression><![CDATA[$F{jumlah_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="16" width="100" height="20" uuid="e6067238-f78a-4ea6-b042-fa2524b5fbf0"/>
+				<textFieldExpression><![CDATA[$F{satuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="16" y="71" width="100" height="20" uuid="7a035b5d-b318-4748-8c46-f931fe38a0a8"/>
+				<textFieldExpression><![CDATA[$F{status_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="71" width="100" height="20" uuid="f1170825-5fe1-4806-86f9-d9861ad6fa12"/>
+				<textFieldExpression><![CDATA[$F{kondisi_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="71" width="100" height="20" uuid="a3cfd522-be9c-472f-a51a-ad817f34aa9f"/>
+				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="71" width="100" height="20" uuid="1a4439a5-5845-4aa3-86f0-fa1ec83ccad1"/>
+				<textFieldExpression><![CDATA[$F{id_user_input}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="71" width="100" height="20" uuid="e76fed1a-a0b1-4c5e-80fc-d974802ef17a"/>
+				<textFieldExpression><![CDATA[$F{id_kategori}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
